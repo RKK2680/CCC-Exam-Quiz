@@ -1,0 +1,1465 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- AP GP  -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Start Quiz </title>
+    <link rel="stylesheet" href="quiz1.css">
+   
+
+</head>
+<body>
+    <div class="start_btn">
+        <button > Start Now </button>
+    </div>
+    <div class="info_box">
+        <div class="info-title"><span>इस प्रश्नोत्तरी के कुछ नियम</span></div>
+        <div class="info-list">
+            <div class="info">1. आपके पास होगा <span>30 seconds</span> प्रत्येक प्रश्न के अनुसार.</div>
+            <div class="info">2. एक बार जब आप अपना उत्तर चुन लेते हैं, तो इसे पूर्ववत नहीं किया जा सकता.</div>
+            <div class="info">3. समय निकल जाने पर आप कोई भी विकल्प नहीं चुन सकते.</div>
+            <div class="info">4. आपके सही उत्तरों के आधार पर आपको अंक मिलेंगे.</div>
+        </div>
+        <div class="buttons">
+            <button class="quit">बाहर निकलें</button>
+            <button class="restart">शुरू करें</button>
+        </div>
+    </div>
+
+    <!-- Quiz Box -->
+    <div class="quiz_box">
+        <header>
+            <div class="title">CCC Quiz Application</div>
+            <div class="timer">
+                <div class="time_left_txt">शेष समय</div>
+                <div class="timer_sec">30</div>
+            </div>
+            <div class="time_line"></div>
+        </header>
+        <section>
+            <div class="que_text">
+          
+            </div>
+            <div class="option_list">
+        
+            </div>
+        </section>
+
+      
+        <footer>
+            <div class="total_que">
+              
+            </div>
+            <button class="next_btn">अगला प्रश्न</button>
+        </footer>
+    </div>
+
+    <!-- Result Box -->
+    <div class="result_box">
+        <div class="icon">
+            <i class="fas fa-crown"></i>
+        </div>
+        <div class="complete_text">आपने प्रश्नोत्तरी पूरी कर ली है!</div>
+        <div class="score_text">
+          
+        </div>
+        <div class="buttons">
+            <button class="restart">Replay Quiz</button>
+            <button class="quit">बहार निकले</button>
+        </div>
+    </div>
+    <script>
+        
+let questions = [
+{
+    numb: 1,
+    question: "जो संस्था Internet Connection उपलब्ध करवाती है , कहलाती है ",
+    answer: "(B)  ISP  ",
+    options: [
+   "(A) Sub domain ",
+   "(B)  ISP  ",
+   "(C) In  ",
+   "(D) कोई नहीं  ",
+    ]
+  },
+  {
+    numb: 2,
+    question: "HTML programme लिखे जाते है  ",
+    answer: "(A)  Note-pad में  ",
+    options: [
+   "(A) Note-pad में ",
+   "(B)  Word pad में  ",
+   "(C) MS-Word में  ",
+   "(D) ये सभी ",
+    ]
+  },
+  {
+    numb: 3,
+    question: "TCP के फुल फॉर्म क्या है ? ",
+    answer: "(C) Transmission Control Protocol  ",
+    options: [
+   "(A) Transaction Control Protocol ",
+   "(B)  Transmission Central Protocol  ",
+   "(C) Transmission Control Protocol  ",
+   "(D) Transmission Code Protocol. ",
+    ]
+  },
+  {
+    numb: 4,
+    question: "Web Programming की जा सकती है ? ",
+    answer: "(C) (a) व (b) दौनों में  ",
+    options: [
+   "(A) HTML में ",
+   "(B) Java में  ",
+   "(C) (a) व (b) दौनों में  ",
+   "(D) इनमे से कोई नहीं ",
+    ]
+  },
+  {
+    numb: 5,
+    question: " Internet access के लिए निम्न में से किस प्रकार का connection लिया जा सकता है ? ",
+    answer: "(C) (a) व (b) दौनों  ",
+    options: [
+   "(A) Dial up ",
+   "(B) Lease line  ",
+   "(C) (a) व (b) दौनों  ",
+   "(D) इनमें से कोई नहीं ",
+    ]
+  },
+  {
+    numb: 6,
+    question: "One Line Communication में ",
+    answer:  "(A) Sender व Receiver एक ही समय में आपस में जुड़े रहते है ",
+    options: [
+   "(A) Sender व Receiver एक ही समय में आपस में जुड़े रहते है ",
+   "(B) केवल Receiver Network से जुड़ा रहता है  ",
+   "(C) केवल Sender Network से जुडा रहता है  ",
+   "(D) ये सभी ",
+    ]
+  },
+  {
+    numb: 7,
+    question: "………….. से आपका कंप्यूटर अन्य कंप्यूटरों से जुड़ सकता है ? ",
+    answer: "(D) नेटवर्क इंटरफ़ेस कार्ड (NIC) ",
+    options: [
+   "(A) विडियो कार्ड ",
+   "(B) साउंड कार्ड  ",
+   "(C) कण्ट्रोल बोर्ड  ",
+   "(D) नेटवर्क इंटरफ़ेस कार्ड (NIC) ",
+    ]
+  },
+  {
+    numb: 8,
+    question: " Save या Save as के लिए कौन-सा मेनू सेलेक्ट किया जाता है  ? ",
+    answer: "(B) File  ",
+    options: [
+   "(A) Tools ",
+   "(B) File  ",
+   "(C) Format ",
+   "(D) Edit ",
+    ]
+  },
+  {
+    numb: 9,
+    question: " ……………… तब होती है जब कंप्यूटरों को ओन किया जाता है और ऑपरेटिंग सिस्टम लोड हो रहा होता है  ? ",
+    answer:   "(A) बूटिंग ",
+    options: [
+   "(A) बूटिंग ",
+   "(B) फ्लेशिंग  ",
+   "(C) ट्रेकिंग ",
+   "(D) टेपिंग ",
+    ]
+  },
+  {
+    numb: 10,
+    question: "सीक्रेट कोड जो कुछ प्रोग्रामों में प्रवेश नहीं करने देता है ? ",
+    answer: "(D) पासवर्ड ",
+    options: [
+   "(A) पासपोर्ट ",
+   "(B) एंट्री कोड  ",
+   "(C) एक्सेस कोड  ",
+   "(D) पासवर्ड ",
+    ]
+  },
+  {
+    numb: 11,
+    question: " कंप्यूटर की हार्डडिस्क ? ",
+    answer: "(D) कंप्यूटर हार्डवेयर है ",
+    options: [
+   "(A) arithmetic और logic unit होती है ",
+   "(B) कंप्यूटर सॉफ्टवेर है  ",
+   "(C) ऑपरेटिंग सिस्टम है ",
+   "(D) कंप्यूटर हार्डवेयर है ",
+    ]
+  },
+  {
+    numb: 12,
+    question: "कंप्यूटर में डिस्क कहाँ रखी जाती है ? ",
+    answer: "(B) डिस्क ड्राइव में  ",
+    options: [
+   "(A) हार्डड्राइव में ",
+   "(B) डिस्क ड्राइव में  ",
+   "(C) CPU में ",
+   "(D) मॉडेम में ",
+    ]
+  },
+  {
+    numb: 13,
+    question: "डेस्कटॉप पर तारीख और समय ……पर होते हैं | ? ",
+    answer: "(A) टास्कबार ",
+    options: [
+   "(A) टास्कबार ",
+   "(B) माई कंप्यूटर  ",
+   "(C) रिस इकिल बिन  ",
+   "(D) केवल (b) और (c) ",
+    ]
+  },
+  {
+    numb: 14,
+    question: "स्प्रेडशीट में प्रत्येक बॉक्स को क्या कहते है ? ",
+    answer: "(B) सेल  ",
+    options: [
+   "(A) फील्ड ",
+   "(B) सेल  ",
+   "(C) खाली स्थान  ",
+   "(D) रिकॉर्ड",
+    ]
+  },
+  {
+    numb: 15,
+    question: " Virtual मेमरी क्या होती है  ? ",
+    answer: "(C) हार्ड डिस्क कि मैमोरी जिसे CPU एक्सटेडेड RAM कि तरह प्रयोग करता है",
+    options: [
+   "(A) RAM में होती है ",
+   "(B) तभी आवश्यक होती है यदि आपके कंप्यूटर में कोई RAM न हो ",
+   "(C) हार्ड डिस्क कि मैमोरी जिसे CPU एक्सटेडेड RAM कि तरह प्रयोग करता है",
+   "(D) फ्लोपी डिस्कों के लिए बैकअप डिवाइस ",
+    ]
+  },
+  {
+    numb: 16,
+    question: "बचत करना आवश्यक होता है  ? ",
+    answer: "(D) उपरोक्त सभी के लिए ",
+    options: [
+   "(A) भविष्य के लिए ",
+   "(B) बड़े खर्चों के लिए  ",
+   "(C) आपातकालीन स्थिति के लिए  ",
+   "(D) उपरोक्त सभी के लिए ",
+    ]
+  },
+  {
+    numb: 17,
+    question: "बैंकिंग व्यवस्था ने लोगों को किसके जोखिम से बचाया है ? ",
+    answer: "(D) ये सभी ",
+    options: [
+   "(A) साहूकारों के ",
+   "(B) चोरों के ",
+   "(C) चीट फण्ड के ",
+   "(D) ये सभी ",
+    ]
+  },
+  {
+    numb: 18,
+    question: "एक चेक बुक पर किसका विवरण अंकित नहीं रहता है  ? ",
+    answer: "(C) ग्रहीता (Payee) के हस्ताक्षर ",
+    options: [
+   "(A) तिथि ",
+   "(B) भुगतान योग्य राशि  ",
+   "(C) ग्रहीता (Payee) के हस्ताक्षर ",
+   "(D) जारी कर्ता के हस्ताक्षर ",
+    ]
+  },
+  {
+    numb: 19,
+    question: "भारत में कितने समय के लिए ऋण प्रदान किये जाते है ? ",
+    answer:  "(D) ये सभी ",
+    options: [
+   "(A) अल्पकाल के लिए ",
+   "(B) दीर्घ काल के लिए  ",
+   "(C) मध्यकाल के लिए  ",
+   "(D) ये सभी ",
+    ]
+  },
+  {
+    numb: 20,
+    question: "एक वेबसाइट …………….. का संग्रह होता है . ? ",
+    answer: "(A) वेब पेजों का ",
+    options: [
+   "(A) वेब पेजों का ",
+   "(B) ब्राउज़र  ",
+   "(C) हाइपरलिंक ",
+   "(D) इनमें से कोई नहीं ",
+    ]
+  },
+  {
+    numb: 21,
+    question: "प्रिंटर और मोनिटर जैसे पैरीफैरल उपकरणों को ……..माना जाता है | ",
+    answer: "(C) हार्डवेयर ",
+    options: [
+   "(A) सॉफ्टवेर ",
+   "(B) डाटा ",
+   "(C) हार्डवेयर ",
+   "(D) सूचना ",
+    ]
+  },
+  {
+    numb: 22,
+    question: "कंप्यूटर की नियन्त्रण इकाई कहलाती है ? ",
+    answer: "(B) सी.पी.यु ",
+    options: [
+   "(A) माउस ",
+   "(B) सी.पी.यु ",
+   "(C) हार्डडिस्क  ",
+   "(D) की-बोर्ड ",
+    ]
+  },
+  {
+    numb: 24,
+    question: "अधिकांश वेबसाइटो में मैन पेज …………… होता है जो वेबसाइट के बाकी पेजों के लिए द्वार का काम करता है  ? ",
+    answer: "(B) होमपेज ",
+    options: [
+   "(A) सर्च इंजन ",
+   "(B) होमपेज ",
+   "(C) ब्राउज़र ",
+   "(D) URL ",
+    ]
+  },
+
+
+{
+    numb: 25,
+    question: "एमएस एक्सेल को ओर किस नाम से जाना जाता है ? "+ "By what other name is MS Excel known? ?",
+    answer: "(B)  स्प्रेडशीट  ",
+    options: [
+   "(A) वर्कबुक ",
+   "(B)  स्प्रेडशीट  ",
+   "(C) डेटाबेस प्रबंधन  ",
+   "(D) प्रस्तुति  ",
+    ]
+  },
+    {
+    numb: 26,
+    question: " IF() फ़ंक्शन का सही सिंटैक्स है। ?"+"The correct syntax of IF() function is. ?",
+    answer:  "(C) =IF (Condition, [value_if_true], [value_if_false]).",
+    options: [
+      "(A) IF (Condition , true([value_if_true]), folse([value_if_false]))",
+      "(B) =IF (Condition [value_if_true], [value_if_false])",
+      "(C) =IF (Condition, [value_if_true], [value_if_false]).",
+      "(D) Only (A)",
+      
+    ]
+  },
+    {
+    numb: 27,
+    question: "एक्सेल फ़ार्मूले किससे शुरू होते हैं ?"+"What do Excel formulas start with? ?",
+    answer: "(C) = ",
+    options: [
+      "(A) = = ",
+      "(B) / ",
+      "(C) = ",
+      "(D) - ",
+    ]
+  },
+    {
+    numb: 28,
+    question: "खुली कार्यपुस्तिकाओं को आसानी से स्विच करने के लिए किस कीबोर्ड शॉर्टकट का उपयोग किया जाता है ?"+"Which keyboard shortcut is used to easily switch open workbooks?",
+    answer: "(C) Ctrl+Tab",
+    options: [
+      "(A) Alt+S",
+      "(B) Ctrl+G",
+      "(C) Ctrl+Tab",
+      "(D) Shift+Enter",
+    ]
+  },
+    {
+    numb: 29,
+    question: "  स्प्रैडशीट में गणना (calculation) करने के लिए, आपको का उपयोग करने की आवश्यकता है? ?"+"To perform calculations in a spreadsheet, you need to use?",
+    answer: "(D) Fourmula",
+    options: [
+      "(A) Variable.",
+      "(B) Name",
+      "(C) Fild.",
+      "(D) Fourmula"
+    ]
+  },
+  
+
+     {
+     numb: 30,
+     question: " MS Excel वर्कशीट में प्रथम सेल को के रूप में लेबल किया जाता है? "+"The first cell in an MS Excel worksheet is labeled as ?",
+     answer: "(B) A1 ",
+     options: [
+       "(A) A0 ",
+       "(B) A1 ",
+       "(C) Aa.",
+       "(D) इनमें से कोई नहीं (None of these) "
+    ]
+   },
+
+   {
+     numb: 31,
+     question: "Cell में current date insert करने की शॉर्टकट की क्या है"+"What is the shortcut key to insert current date in a cell? ",
+     answer: "(C) Ctrl+ ; ",
+     options: [
+       "(A) =datevlue() ",
+       "(B) Ctrl+ : ",
+       "(C) Ctrl+ ; ",
+       "(D) इनमें से कोई नहीं (None of these) "
+    ]
+    
+   },
+
+   {
+     numb: 32,
+     question: "इनमें से किस फंक्शन का प्रयोग एक से ज्यादा स्पेस हटाने के लिए किया जाता है ?"+"Which of the following functions is used to remove more than one space? ?",
+     answer: "(C) Trim. ",
+     options: [
+       "(A) Len ",
+       "(B) Spaceremover. ",
+       "(C) Trim. ",
+       "(D) Only (B) "
+    ]
+   },
+
+   {
+     numb: 33,
+     question: " MS Excel के सेल में A6 से A11 में Value 29,19,27,39 और 20 लिखी है तब = MAX(A6:A9,A11) का मान कितना आएगा ? ",
+     answer: "(B) 39 ",
+     options: [
+       "(A) 29. ",
+       "(B) 39 ",
+       "(C) 21. ",
+       "(D) 20 ",
+    
+    ]
+   },
+
+   {
+     numb: 34,
+     question: " एक्सेल में ऐक्टिव सेल के कंटेंट्स को कौन डिस्प्ले करता हैं ? "+"Why use shortcut key Windows Ctrl + Alt +Tab ?",
+     answer: "(C) फार्मूला बार ",
+     options: [
+     
+     "(A) नेम बॉक्स ",
+     "(B) रो हेडिंग्स",
+     "(C) फार्मूला बार ",
+     "(D) टास्कपेन ",
+    ]
+   },
+   {
+     numb: 35,
+     question: " “AI Ethics” का उद्देश्य क्या है ?",
+     answer:  "(A) AI के उचित और नैतिक उपयोग को सुनिश्चित करना ",
+     options: [
+     
+     "(A) AI के उचित और नैतिक उपयोग को सुनिश्चित करना ",
+     "(B) AI की गति बढ़ाना ",
+     "(C) AI के विकास को रोकना ",
+     "(D) AI को केवल वैज्ञानिक अनुसंधान तक सीमित रखना ",
+    ]
+   },
+   {
+     numb: 36,
+     question: " कौन सा प्रोटोकॉल वेब पेज को सुरक्षित रूप से ट्रांसमिट करता है?",
+     answer: "(B) HTTPS ",
+     options: [
+     
+     "(A) HTTP ",
+     "(B) HTTPS ",
+     "(C) FTP ",
+     "(D) SMTP ",
+    ]
+   },
+   {
+     numb: 37,
+     question: " TCP/IP नेटवर्किंग में किसका उपयोग डेटा ट्रांसमिशन के लिए होता है ?",
+     answer: "(D) सभी  ",
+     options: [
+     
+     "(A) SMTP ",
+     "(B) FTP ",
+     "(C) HTTP ",
+     "(D) सभी  ",
+    ]
+   },
+   {
+     numb: 38,
+     question: " IPv6 कितने बिट्स का एड्रेस स्पेस प्रदान करता है?",
+     answer:"(C) 128-बिट्स ",
+     options: [
+     
+     "(A) 32-बिट्स ",
+     "(B) 64-बिट्स ",
+     "(C) 128-बिट्स ",
+     "(D) 256-बिट्स ",
+    ]
+   },
+   {
+     numb: 39,
+     question: " 3D प्रिंटिंग को अन्य किस नाम से जाना जाता है?",
+     answer: "(B) एडिटिव मैन्युफैक्चरिंग ",
+     options: [
+     
+     "(A) सब्सट्रैक्टिव मैन्युफैक्चरिंग ",
+     "(B) एडिटिव मैन्युफैक्चरिंग ",
+     "(C) डिजिटल मैन्युफैक्चरिंग ",
+     "(D) वर्चुअल मैन्युफैक्चरिंग ",
+    ]
+   },
+   {
+     numb: 40,
+     question: "  IP और MAC एड्रेस में मुख्य अंतर क्या है?",
+     answer: "(B) IP एड्रेस नेटवर्क पर उपकरणों की पहचान करता है, MAC एड्रेस हार्डवेयर की ",
+     options: [
+     
+     "(A) IP एड्रेस स्थिर होता है, MAC बदलता है ",
+     "(B) IP एड्रेस नेटवर्क पर उपकरणों की पहचान करता है, MAC एड्रेस हार्डवेयर की ",
+     "(C) IP और MAC एक ही होते हैं ",
+     "(D) MAC केवल इंटरनेट पर काम करता है ",
+    ]
+   },
+   {
+     numb: 41,
+     question: " MAC एड्रेस किसका विशिष्ट पहचानकर्ता होता है?",
+     answer: "(B) नेटवर्क इंटरफ़ेस कार्ड (NIC) ",
+     options: [
+     
+     "(A) मोबाइल फोन ",
+     "(B) नेटवर्क इंटरफ़ेस कार्ड (NIC) ",
+     "(C) राउटर ",
+     "(D) क्लाउड सर्वर ",
+    ]
+   },
+   {
+     numb: 42,
+     question: "  IP एड्रेस का मुख्य कार्य क्या है?",
+     answer:  "(B) उपकरणों की पहचान करना ",
+     options: [
+     
+     "(A) डेटा एन्क्रिप्शन ",
+     "(B) उपकरणों की पहचान करना ",
+     "(C) नेटवर्क को सुरक्षित करना ",
+     "(D) नेटवर्क की गति बढ़ाना ",
+    ]
+   },
+   {
+     numb: 43,
+     question: " “Artificial Intelligence” में ‘सुपर AI’ का क्या मतलब है ?",
+     answer: "(C) एक एआई (AI) जो मानव से अधिक बुद्धिमान है ",
+     options: [
+     
+     "(A) एक एआई (AI) जो मानव जैसी बुद्धिमत्ता रखती है ",
+     "(B) एक एआई (AI) जो विशेष कार्य करने में माहिर है ",
+     "(C) एक एआई (AI) जो मानव से अधिक बुद्धिमान है ",
+     "(D) एक एआई (AI) जो केवल गणना कर सकती है ",
+    ]
+   },
+   {
+     numb: 44,
+     question: "  IoT का मुख्य उद्देश्य क्या है?",
+     answer: "(C) उपकरणों को इंटरनेट से जोड़ना ",
+     options: [
+     
+     "(A)  नेटवर्क सुरक्षा प्रदान करना ",
+     "(B) फाइल शेयरिंग ",
+     "(C) उपकरणों को इंटरनेट से जोड़ना ",
+     "(D) डेटा स्टोरेज ",
+    ]
+   },
+   {
+     numb: 45,
+     question: " नेटवर्क की कौन सी टोपोलॉजी में एक सेंट्रल हब होता है?",
+     answer: "(C) स्टार टोपोलॉजी ",
+     options: [
+     
+     "(A) रिंग टोपोलॉजी ",
+     "(B) बस टोपोलॉजी ",
+     "(C) स्टार टोपोलॉजी ",
+     "(D) मैश टोपोलॉजी ",
+    ]
+   },
+   {
+     numb: 46,
+     question: " कौन सा इंटरनेट कनेक्शन मोड मोबाइल डेटा के साथ इस्तेमाल होता है?",
+     answer: "(D) USB Tethering ",
+     options: [
+     
+     "(A) LAN ",
+     "(B) WiFi ",
+     "(C) Ethernet ",
+     "(D) USB Tethering ",
+    ]
+   },
+   {
+     numb: 47,
+     question: " वर्ल्ड वाइड वेब (WWW) का आविष्कार किसने किया था?",
+     answer:  "(A) टिम बर्नर्स-ली ",
+     options: [
+
+     "(A) टिम बर्नर्स-ली ",
+     "(B) स्टीव जॉब्स ",
+     "(C) बिल गेट्स ",
+     "(D) मार्क जुकरबर्ग ",
+    ]
+   },
+   {
+     numb: 48,
+     question: "  IMEI किस प्रकार का पहचानकर्ता है? ",
+     answer: "(B) स्मार्टफोन का ",
+     options: [
+     
+     "(A) कंप्यूटर का ",
+     "(B) स्मार्टफोन का ",
+     "(C) राउटर का ",
+     "(D) प्रिंटर का ",
+    ]
+   },
+   {
+     numb: 49,
+     question: "  वेबसाइट के पते को किस नाम से भी जाना जाता है?",
+     answer: "(A) URL ",
+     options: [
+     
+     "(A) URL ",
+     "(B) HTML ",
+     "(C) IP ",
+     "(D) FTP ",
+    ]
+   },
+   {
+     numb: 50,
+     question: "  इंटरनेट का पूर्ण रूप क्या है?",
+     answer: "(C) Interconnected Network ",
+     options: [
+     
+     "(A) Internal Network ",
+     "(B) nternational Network ",
+     "(C) Interconnected Network ",
+     "(D) Intelligent Network ",
+    ]
+   },
+   {
+     numb: 51,
+     question: " नेटवर्क के किस टोपोलॉजी में प्रत्येक डिवाइस सीधे दूसरे डिवाइस से जुड़ा होता हैं ? ",
+     answer: "(C) मैश टोपोलॉजी ",
+     options: [
+     
+     "(A) स्टार टोपोलॉजी ",
+     "(B) रिंग टोपोलॉजी ",
+     "(C) मैश टोपोलॉजी ",
+     "(D) बस टोपोलॉजी ",
+    ]
+   },
+   {
+     numb: 52,
+     question: " क्लाउड कंप्यूटिंग में “SaaS” का पूर्ण रूप क्या है?",
+     answer: "(A) Software as a Service ",
+     options: [
+     
+     "(A) Software as a Service ",
+     "(B) Software and a Service ",
+     "(C) Software as a System ",
+     "(D) System as a Service ",
+    ]
+   },
+   {
+     numb: 53,
+     question: " एथिकल हैकिंग का उद्देश्य क्या होता है?",
+     answer: "(B) सिस्टम की सुरक्षा को मजबूत करना ",
+     options: [
+     
+     "(A) नेटवर्क को नुकसान पहुंचाना ",
+     "(B) सिस्टम की सुरक्षा को मजबूत करना ",
+     "(C) सॉफ्टवेयर डेवलपमेंट ",
+     "(D)  हार्डवेयर अपग्रेड ",
+    ]
+   },
+   {
+     numb: 54,
+     question: " किस प्रकार के कंप्यूटर नेटवर्क में डेटा ट्रांसमिशन अधिक दूरी तक किया जाता है ?",
+     answer: "(B) WAN ",
+     options: [
+     
+     "(A) LAN ",
+     "(B) WAN ",
+     "(C) MAN ",
+     "(D) PAN ",
+    ]
+   },
+   {
+     numb: 55,
+     question: "  IoT उपकरण किस प्रोटोकॉल का उपयोग कर आपस में संवाद करते हैं?",
+     answer: "(C) MQTT (Message Queuing Telemetry Transport)",
+     options: [
+     
+     "(A) HTTP ",
+     "(B) TCP/IP",
+     "(C) MQTT (Message Queuing Telemetry Transport)",
+     "(D) FTP ",
+    ]
+   },
+   {
+     numb: 56,
+     question: " AI में तंत्रिका नेटवर्क (Neural Networks) का क्या उपयोग है?",
+     answer: "(C) पैटर्न पहचानने और निर्णय लेने के लिए ",
+     options: [
+     
+     "(A) डेटा स्टोरेज के लिए ",
+     "(B) सॉफ्टवेयर इंस्टॉलेशन के लिए ",
+     "(C) पैटर्न पहचानने और निर्णय लेने के लिए ",
+     "(D) नेटवर्क सिक्योरिटी के लिए ",
+    ]
+   },
+   {
+     numb: 57,
+     question: " कौन सा तकनीक उपयोगकर्ता को वास्तविक समय में प्रतिक्रिया देती है? ",
+     answer:  "(D) रियल-टाइम ऑपरेटिंग सिस्टम (RTOS)",
+     options: [
+     
+     "(A) वर्चुअल रियलिटी ",
+     "(B) क्लाउड कंप्यूटिंग ",
+     "(C) नेटवर्किंग ",
+     "(D) रियल-टाइम ऑपरेटिंग सिस्टम (RTOS)",
+    ]
+   },
+   {
+     numb: 58,
+     question: " DNS का पूर्ण रूप क्या है? ",
+     answer:  "(B) Domain Name System ",
+     options: [
+     
+     "(A) Data Network System ",
+     "(B) Domain Name System ",
+     "(C) Digital Network System ",
+     "(D) Domain Network Server ",
+    ]
+   },
+   {
+     numb: 59,
+     question: " बिग डेटा एनालिटिक्स का मुख्य उपयोग किसके लिए होता है? ",
+     answer: "(D) बड़े डेटा सेट का विश्लेषण करने के लिए ",
+     options: [
+     
+     "(A)  छोटे डेटा सेट का विश्लेषण करने के लिए ",
+     "(B)  इंटरनेट स्पीड बढ़ाने के लिए ",
+     "(C)  नेटवर्क सिक्योरिटी के लिए ",
+     "(D) बड़े डेटा सेट का विश्लेषण करने के लिए ",
+    ]
+   },
+   {
+     numb: 60,
+     question: " फायरवॉल किस उद्देश्य से उपयोग किया जाता है?",
+     answer: "(A) नेटवर्क की सुरक्षा के लिए ",
+     options: [
+     
+     "(A) नेटवर्क की सुरक्षा के लिए ",
+     "(B) डेटा स्टोर करने के लिए ",
+     "(C) हार्डवेयर अपग्रेड के लिए ",
+     "(D) सॉफ्टवेयर इंस्टॉल करने के लिए ",
+    ]
+   },
+   {
+     numb: 61,
+     question: " IoT का पूर्ण रूप क्या है?",
+     answer:  "(B) Internet of Things ",
+     options: [
+     
+     "(A)  Information of Things ",
+     "(B) Internet of Things ",
+     "(C) Integration of Technology ",
+     "(D) Input of Technology ",
+    ]
+   },
+   {
+     numb: 62,
+     question: " डेटा सिक्योरिटी के लिए कौन सी तकनीक का उपयोग किया जाता है?",
+     answer: "(C) ब्लॉकचेन ",
+     options: [
+     
+     "(A) HTTP ",
+     "(B) FTP ",
+     "(C) ब्लॉकचेन ",
+     "(D) DNS ",
+    ]
+   },
+   {
+     numb: 63,
+     question: " क्लाउड स्टोरेज में डाटा किस पर संग्रहीत होता है?",
+     answer:  "(B) रिमोट सर्वर ",
+     options: [
+     
+     "(A) लोकल कंप्यूटर ",
+     "(B) रिमोट सर्वर ",
+     "(C) फ़्लैश ड्राइव ",
+     "(D) सीडी ",
+    ]
+   },
+   {
+     numb: 64,
+     question: "  कंप्यूटर नेटवर्किंग में ‘Ping’ का क्या उपयोग होता है?",
+     answer: "(A) नेटवर्क कनेक्शन की जांच ",
+     options: [
+     
+     "(A) नेटवर्क कनेक्शन की जांच ",
+     "(B) डेटा डाउनलोड ",
+     "(C) वायरस स्कैन ",
+     "(D) सॉफ्टवेयर इंस्टॉलेशन ",
+    ]
+   },
+   {
+     numb: 65,
+     question: " कौन सा आर्टिफिशियल इंटेलिजेंस का उदाहरण है?",
+     answer: "(C) चैटबॉट ",
+     options: [
+     
+     "(A) वेब ब्राउज़र ",
+     "(B) ईमेल सर्वर ",
+     "(C) चैटबॉट ",
+     "(D) फ़ाइल ट्रांसफर प्रोटोकॉल ",
+    ]
+   },
+   {
+     numb: 66,
+     question: " कौन सा प्रोटोकॉल ईमेल भेजने के लिए उपयोग किया जाता है?",
+     answer:  "(D) SMTP ",
+     options: [
+     
+     "(A) FTP ",
+     "(B) HTTP ",
+     "(C) IMAP ",
+     "(D) SMTP ",
+    ]
+   },
+   {
+     numb: 67,
+     question: " नेटवर्क पर ट्रैफिक को नियंत्रित करने वाला उपकरण कौन सा है?",
+     answer:  "(B) Router ",
+     options: [
+     
+     "(A) Modem ",
+     "(B) Router ",
+     "(C) Switch ",
+     "(D) Hub ",
+    ]
+   },
+   {
+     numb: 68,
+     question: " इंटरनेट पर जानकारी खोजने के लिए किसका उपयोग किया जाता है?",
+     answer:  "(B) सर्च इंजन ",
+     options: [
+     
+     "(A) वेब ब्राउज़र ",
+     "(B) सर्च इंजन ",
+     "(C) LAN ",
+     "(D) नेटवर्क प्रोटोकॉल ",
+    ]
+   },
+   {
+     numb: 69,
+     question: " गूगल क्रोम किस प्रकार का सॉफ़्टवेयर है?",
+     answer:  "(D) वेब ब्राउज़र ",
+     options: [
+     
+     "(A) एंटीवायरस ",
+     "(B) नेटवर्क प्रोटोकॉल ",
+     "(C) एंटीवायरस ",
+     "(D) वेब ब्राउज़र ",
+    ]
+   },
+   {
+     numb: 70,
+     question: " किस इंटरनेट कनेक्शन मोड में मोबाइल डेटा को अन्य डिवाइस से शेयर किया जाता है?",
+     answer: "(C) Hotspot ",
+     options: [
+     
+     "(A) USB Tethering ",
+     "(B) WiFi",
+     "(C) Hotspot ",
+     "(D) LAN ",
+    ]
+   },
+   {
+     numb: 71,
+     question: "  इंटरनेट एक्सेस प्रदान करने वाली संस्था को क्या कहा जाता है?",
+     answer:  "(B) ISP",
+     options: [
+     
+     "(A) URL ",
+     "(B) ISP",
+     "(C) IP ",
+     "(D) DNS ",
+    ]
+   },
+   {
+     numb: 72,
+     question: " नेटवर्क टोपोलॉजी किससे संबंधित है?",
+     answer: "(A) नेटवर्क डिज़ाइन ",
+     options: [
+     
+     "(A) नेटवर्क डिज़ाइन ",
+     "(B) नेटवर्क प्रोटोकॉल ",
+     "(C) नेटवर्क सुरक्षा ",
+     "(D) नेटवर्क गति ",
+    ]
+   },
+   {
+     numb: 73,
+     question: " .jpeg फाइल का उपयोग किसके लिए किया जाता है?",
+     answer:  "(C) इमेज स्टोर करने के लिए ",
+     options: [
+     
+     "(A) दस्तावेज़ स्टोर करने के लिए ",
+     "(B) विडियो स्टोर करने के लिए ",
+     "(C) इमेज स्टोर करने के लिए ",
+     "(D) ऑडियो स्टोर करने के लिए ",
+    ]
+   },
+   {
+     numb: 74,
+     question: " “.docx” किस प्रकार की फाइल है?",
+     answer:  "(B) Word Document ",
+     options: [
+     
+     "(A) Image File ",
+     "(B) Word Document ",
+     "(C) Video File ",
+     "(D) Audio File ",
+    ]
+   },
+   {
+     numb: 75,
+     question: " फ़ाइलों और फ़ोल्डरों को व्यवस्थित करने के लिए किस विकल्प का उपयोग किया जाता है?",
+     answer:  "(D) File Explorer ",
+     options: [
+     
+     "(A) Disk Management ",
+     "(B) File and Folder Management ",
+     "(C) Task Scheduler ",
+     "(D) File Explorer ",
+    ]
+   },
+   {
+     numb: 76,
+     question: " प्रिंटर जोड़ने का विकल्प किस मेनू में होता है?",
+     answer: "(B) Control Panel ",
+     options: [
+     
+     "(A) Device Manager ",
+     "(B) Control Panel ",
+     "(C) Task Manager ",
+     "(D) Display Settings ",
+    ]
+   },
+   {
+     numb: 77,
+     question: " URL किसका संक्षिप्त रूप है?",
+     answer: "(A) Uniform Resource Locator ",
+     options: [
+     
+     "(A) Uniform Resource Locator ",
+     "(B) Universal Resource Link ",
+     "(C) Unique Resource Locator ",
+     "(D) Uniform Routing Link ",
+    ]
+   },
+   {
+     numb: 78,
+     question: " डिस्प्ले सेटिंग्स को बदलने के लिए किस विकल्प का उपयोग किया जाता है?",
+     answer:  "(D) Personalization -> Display ",
+     options: [
+     
+     "(A)  Control Panel -> Display ",
+     "(B) Device Manager -> Display",
+     "(C) Task Manager -> Graphics Settings ",
+     "(D) Personalization -> Display ",
+    ]
+   },
+   {
+     numb: 79,
+     question: " निम्नलिखित में से कौन सा मोबाइल ऑपरेटिंग सिस्टम नहीं है?",
+     answer: "(C) Windows ",
+     options: [
+     
+     "(A) Android ",
+     "(B) iOS",
+     "(C) Windows ",
+     "(D) Symbian ",
+    ]
+   },
+   {
+     numb: 80,
+     question: " निम्नलिखित में से कौन सा मोबाइल एप उपयोगकर्ताओं को सोशल नेटवर्किंग की सुविधा प्रदान करता है? ",
+     answer:  "(B) Instagram",
+     options: [
+     
+     "(A) WhatsApp ",
+     "(B) Instagram",
+     "(C) Google Maps ",
+     "(D) MS Word ",
+    ]
+   },
+   {
+     numb: 81,
+     question: " निम्नलिखित में से कौन सा मोबाइल एप लोकेशन-आधारित सेवाएं प्रदान करता है?",
+     answer:   "(C) Google Maps ",
+     options: [
+     
+     "(A) WhatsApp ",
+     "(B) Facebook",
+     "(C) Google Maps ",
+     "(D) YouTube ",
+    ]
+   },
+   {
+     numb: 82,
+     question: " कंप्यूटर की प्राइमरी मेमोरी को क्या कहा जाता है?",
+     answer:  "(B) रैम",
+     options: [
+     
+     "(A) हार्ड डिस्क ",
+     "(B) रैम",
+     "(C) रोम ",
+     "(D) फ्लैश ड्राइव ",
+    ]
+   },
+   {
+     numb: 83,
+     question: "निम्नलिखित में से कौन-सा इनपुट डिवाइस है?",
+     answer:  "(A) कीबोर्ड ",
+     options: [
+     
+     "(A) कीबोर्ड ",
+     "(B) मॉनिटर",
+     "(C) प्रिंटर ",
+     "(D) स्पीकर ",
+    ]
+   },
+   {
+     numb: 84,
+     question: " कंप्यूटर वायरस के द्वारा संक्रमित फ़ाइल को क्या कहा जाता है?",
+     answer:   "(A) वायरस होस्ट ",
+     options: [
+     
+     "(A) वायरस होस्ट ",
+     "(B) ट्रोजन ",
+     "(C) स्पैम ",
+     "(D) फ़िशिंग ",
+    ]
+   },
+   {
+     numb: 85,
+     question: " वाइरस की पहचान करने और उन्हें हटाने के लिए कौन-सा सॉफ़्टवेयर इस्तेमाल होता है?",
+     answer:  "(C) एंटीवायरस ",
+     options: [
+     
+     "(A) फायरवॉल ",
+     "(B) ब्राउज़र ",
+     "(C) एंटीवायरस ",
+     "(D) ऑपरेटिंग सिस्टम ",
+    ]
+   },
+   {
+     numb: 86,
+     question: " इंटरनेट पर डेटा सुरक्षा के लिए क्या सबसे उपयुक्त है? ",
+     answer:   "(A) एन्क्रिप्शन",
+     options: [
+     
+     "(A) एन्क्रिप्शन",
+     "(B) डीक्रिप्शन",
+     "(C) डेटा लॉस ",
+     "(D) वायरस ",
+    ]
+   },
+   {
+     numb: 87,
+     question: "  फिशिंग क्या है?",
+     answer:  "(D) नकली वेबसाइट या ईमेल से व्यक्तिगत जानकारी चुराना ",
+     options: [
+     
+     "(A) इंटरनेट स्पीड बढ़ाना ",
+     "(B) डेटा को कॉम्प्रेस करना ",
+     "(C) नेटवर्क को तेज करना ",
+     "(D) नकली वेबसाइट या ईमेल से व्यक्तिगत जानकारी चुराना ",
+    ]
+   },
+   {
+     numb: 88,
+     question: "  कंप्यूटर की गति मापने की इकाई क्या है? ",
+     answer:  "(A) GHz ",
+     options: [
+     
+     "(A) GHz ",
+     "(B) GB ",
+     "(C) MB ",
+     "(D) KB ",
+    ]
+   },
+   {
+     numb: 89,
+     question: " कंप्यूटर का यूजर इंटरफेस किसे कहा जाता है ?",
+     answer:  "(D) GUI ",
+     options: [
+     
+     "(A) RAM ",
+     "(B) CPU ",
+     "(C) HDD ",
+     "(D) GUI ",
+    ]
+   },
+   {
+     numb: 90,
+     question: " डेटा बैकअप का मुख्य उद्देश्य क्या है?",
+     answer:    "(A) डेटा को सुरक्षित करना ",
+     options: [
+     
+     "(A) डेटा को सुरक्षित करना ",
+     "(B) डेटा को प्रिंट करना ",
+     "(C) डेटा की गति बढ़ाना ",
+     "(D) डेटा को डिलीट करना ",
+    ]
+   },
+   {
+     numb: 91,
+     question: " कौन-सी तकनीक डेटा को एन्क्रिप्ट करती है?",
+     answer:   "(C) क्रिप्टोग्राफी ",
+     options: [
+     
+     "(A) क्लाउड स्टोरेज ",
+     "(B) नेटवर्किंग",
+     "(C) क्रिप्टोग्राफी ",
+     "(D) हार्डवेयर रिपेयर ",
+    ]
+   },
+   {
+     numb: 92,
+     question: "  एक ‘बोटनेट’ क्या है?",
+     answer:  "(B) संक्रमित कंप्यूटरों का नेटवर्क ",
+     options: [
+     
+     "(A) एक प्रकार का सॉफ्टवेयर ",
+     "(B) संक्रमित कंप्यूटरों का नेटवर्क ",
+     "(C) एक क्लाउड स्टोरेज सेवा ",
+     "(D) एक प्रकार का एंटीवायरस ",
+    ]
+   },
+   {
+     numb: 93,
+     question: " ‘Machine Learning’ में ‘Supervised Learning’ का क्या मतलब है?",
+     answer:   "(A) प्रशिक्षित डेटा के साथ मशीन को प्रशिक्षित करना ",
+     options: [
+     
+     "(A) प्रशिक्षित डेटा के साथ मशीन को प्रशिक्षित करना ",
+     "(B) बिना डेटा के मशीन को प्रशिक्षित करना ",
+     "(C) डेटा को एन्क्रिप्ट करना ",
+     "(D) मशीन को डेटा से अनप्रशिक्षित करना ",
+    ]
+   },
+   {
+     numb: 94,
+     question: "Zero Trust Architecture’ का क्या मतलब है?",
+     answer:   "(B) नेटवर्क में किसी भी यूजर को भरोसा न करना ",
+     options: [
+     
+     "(A) सॉफ्टवेयर को अपडेट करना ",
+     "(B) नेटवर्क में किसी भी यूजर को भरोसा न करना ",
+     "(C) डेटा को प्रिंट करना ",
+     "(D) नेटवर्क की स्पीड बढ़ाना ",
+    ]
+   },
+   {
+     numb: 95,
+     question: " ‘SQL Injection’ क्या है?",
+     answer:  "(D) एक प्रकार का साइबर अटैक ",
+     options: [
+     
+     "(A) एक प्रकार का डेटा बैकअप ",
+     "(B) एक प्रकार का एंटीवायरस ",
+     "(C) एक प्रकार की नेटवर्क स्पीड ",
+     "(D) एक प्रकार का साइबर अटैक ",
+    ]
+   },
+   {
+     numb: 96,
+     question: " VPN का पूरा नाम क्या है? ",
+     answer:   "(C) वर्चुअल प्राइवेट नेटवर्क ",
+     options: [
+     
+     "(A) वाइड पब्लिक नेटवर्क ",
+     "(B) वर्चुअल पब्लिक नेटवर्क ",
+     "(C) वर्चुअल प्राइवेट नेटवर्क ",
+     "(D) वाइड प्राइवेट नेटवर्क ",
+    ]
+   },
+   {
+     numb: 97,
+     question: " Cybersecurity’ में ‘DDoS’ का पूरा नाम क्या है? ",
+     answer:   "(B) डिस्ट्रिब्यूटेड डेनियल ऑफ सर्विस ",
+     options: [
+     
+     "(A) डिस्ट्रिब्यूटेड डाटा ऑपरेशन सर्विस ",
+     "(B) डिस्ट्रिब्यूटेड डेनियल ऑफ सर्विस ",
+     "(C) डायरेक्ट डाटा ऑपरेशन सर्विस ",
+     "(D) डाटा डिस्क्रीप्टिंग ऑफ सर्विस ",
+    ]
+   },
+   {
+     numb: 98,
+     question: " साइबर सुरक्षा के लिए सबसे महत्वपूर्ण उपाय क्या है? ",
+     answer:   "(A) नियमित सॉफ़्टवेयर अपडेट ",
+     options: [
+     
+     "(A) नियमित सॉफ़्टवेयर अपडेट ",
+     "(B) केवल एक पासवर्ड का उपयोग करना ",
+     "(C) अनधिकृत वेबसाइटों पर जाना ",
+     "(D) सिस्टम को बंद रखना ",
+    ]
+   },
+   {
+     numb: 99,
+     question: " कंप्यूटर नेटवर्क में ‘HTTP’ का पूरा नाम क्या है?",
+     answer:  "(B) हाइपरटेक्स्ट ट्रांसफर प्रोटोकॉल",
+     options: [
+     
+     "(A) हाई-टेक ट्रांसफर प्रोटोकॉल ",
+     "(B) हाइपरटेक्स्ट ट्रांसफर प्रोटोकॉल",
+     "(C) हाई-टेक टैग प्रोटोकॉल ",
+     "(D) हाइपरटेक्स्ट टैग प्रोटोकॉल ",
+    ]
+   },
+   {
+     numb: 100,
+     question: "  रैनसमवेयर क्या होता है? ",
+     answer:   "(D) डेटा को एन्क्रिप्ट करके फिरौती मांगना ",
+     options: [
+     
+     "(A) सिस्टम की स्पीड बढ़ाना ",
+     "(B) डेटा को प्रिंट करना ",
+     "(C) सिस्टम को सुरक्षित करना ",
+     "(D) डेटा को एन्क्रिप्ट करके फिरौती मांगना ",
+    ]
+   },
+];
+//selecting all required elements
+const start_btn = document.querySelector(".start_btn button");
+const info_box = document.querySelector(".info_box");
+const exit_btn = info_box.querySelector(".buttons .quit");
+const continue_btn = info_box.querySelector(".buttons .restart");
+const quiz_box = document.querySelector(".quiz_box");
+const result_box = document.querySelector(".result_box");
+const option_list = document.querySelector(".option_list");
+const time_line = document.querySelector("header .time_line");
+const timeText = document.querySelector(".timer .time_left_txt");
+const timeCount = document.querySelector(".timer .timer_sec");
+
+// if startQuiz button clicked
+start_btn.onclick = ()=>{
+    info_box.classList.add("activeInfo"); //show info box
+}
+
+// if exitQuiz button clicked
+exit_btn.onclick = ()=>{
+    info_box.classList.remove("activeInfo"); //hide info box
+}
+
+// if continueQuiz button clicked
+continue_btn.onclick = ()=>{
+    info_box.classList.remove("activeInfo"); //hide info box
+    quiz_box.classList.add("activeQuiz"); //show quiz box
+    showQuetions(0); //calling showQestions function
+    queCounter(1); //passing 1 parameter to queCounter
+    startTimer(30); //calling startTimer function
+    startTimerLine(0); //calling startTimerLine function
+}
+
+let timeValue =  30;
+let que_count = 0;
+let que_numb = 1;
+let userScore = 0;
+let counter;
+let counterLine;
+let widthValue = 0;
+
+const restart_quiz = result_box.querySelector(".buttons .restart");
+const quit_quiz = result_box.querySelector(".buttons .quit");
+
+// if restartQuiz button clicked
+restart_quiz.onclick = ()=>{
+    quiz_box.classList.add("activeQuiz"); //show quiz box
+    result_box.classList.remove("activeResult"); //hide result box
+    timeValue = 30; 
+    que_count = 0;
+    que_numb = 1;
+    userScore = 0;
+    widthValue = 0;
+    showQuetions(que_count); //calling showQestions function
+    queCounter(que_numb); //passing que_numb value to queCounter
+    clearInterval(counter); //clear counter
+    clearInterval(counterLine); //clear counterLine
+    startTimer(timeValue); //calling startTimer function
+    startTimerLine(widthValue); //calling startTimerLine function
+    timeText.textContent = "Time Left"; //change the text of timeText to Time Left
+    next_btn.classList.remove("show"); //hide the next button
+}
+
+// if quitQuiz button clicked
+quit_quiz.onclick = ()=>{
+    window.location.reload(); //reload the current window
+}
+
+const next_btn = document.querySelector("footer .next_btn");
+const bottom_ques_counter = document.querySelector("footer .total_que");
+
+// if Next Que button clicked
+next_btn.onclick = ()=>{
+    if(que_count < questions.length - 1){ 
+        que_count++; 
+        que_numb++; 
+        showQuetions(que_count); 
+        queCounter(que_numb); 
+        clearInterval(counter); 
+        clearInterval(counterLine); 
+        startTimer(timeValue); 
+        startTimerLine(widthValue); 
+        timeText.textContent = "Time Left"; 
+        next_btn.classList.remove("show"); 
+    }else{
+        clearInterval(counter); 
+        clearInterval(counterLine);
+        showResult(); 
+    }
+}
+
+
+function showQuetions(index){
+    const que_text = document.querySelector(".que_text");
+
+    
+    let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
+    let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
+    + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
+    + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
+    + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
+    que_text.innerHTML = que_tag; 
+    option_list.innerHTML = option_tag; 
+    
+    const option = option_list.querySelectorAll(".option");
+
+    
+    for(i=0; i < option.length; i++){
+        option[i].setAttribute("onclick", "optionSelected(this)");
+    }
+}
+
+let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
+let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
+
+
+function optionSelected(answer){
+    clearInterval(counter); 
+    clearInterval(counterLine); 
+    let userAns = answer.textContent; 
+    let correcAns = questions[que_count].answer; 
+    const allOptions = option_list.children.length; 
+    
+    if(userAns == correcAns){ 
+        userScore += 1; 
+        answer.classList.add("correct"); //adding green color to correct selected option
+        answer.insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to correct selected option
+        console.log("Correct Answer");
+        console.log("Your correct answers = " + userScore);
+    }else{
+        answer.classList.add("incorrect"); //adding red color to correct selected option
+        answer.insertAdjacentHTML("beforeend", crossIconTag); //adding cross icon to correct selected option
+        console.log("Wrong Answer");
+
+        for(i=0; i < allOptions; i++){
+            if(option_list.children[i].textContent == correcAns){ //if there is an option which is matched to an array answer 
+                option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
+                option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
+                console.log("Auto selected correct answer.");
+            }
+        }
+    }
+    for(i=0; i < allOptions; i++){
+        option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
+    }
+    next_btn.classList.add("show"); //show the next button if user selected any option
+}
+
+function showResult(){
+    info_box.classList.remove("activeInfo"); //hide info box
+    quiz_box.classList.remove("activeQuiz"); //hide quiz box
+    result_box.classList.add("activeResult"); //show result box
+    const scoreText = result_box.querySelector(".score_text");
+    
+    if (userScore > 3){ // if user scored more than 3
+        //creating a new span tag and passing the user score number and total question number
+        let scoreTag = '<span>और बधाई! 🎉, आपको मिला <p>'+ questions.length  +'</p> मैं से <p>'+ userScore +'</p></span>';
+        scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
+    }
+    else if(userScore > 1){ // if user scored more than 1
+        let scoreTag = '<span>और अच्छा 😎, आपको मिला <p>'+ questions.length +'</p> मैं से <p>'+ userScore +'</p></span>';
+        scoreText.innerHTML = scoreTag;
+    }
+    else{ // if user scored less than 1
+        let scoreTag = '<span>और मुझे खेद है 😐, आपको मिला केवल <p>'+ questions.length +'</p> मैं से  <p>'+ userScore +'</p></span>';
+        scoreText.innerHTML = scoreTag;
+    }
+}
+
+function startTimer(time){
+    counter = setInterval(timer, 540);
+    function timer(){
+        timeCount.textContent = time; //changing the value of timeCount with time value
+        time--; //decrement the time value
+        if(time < 9){ //if timer is less than 9
+            let addZero = timeCount.textContent; 
+            timeCount.textContent = "0" + addZero; //add a 0 before time value
+        }
+        if(time < 0){ //if timer is less than 0
+            clearInterval(counter); //clear counter
+            timeText.textContent = "Time Off"; //change the time text to time off
+            const allOptions = option_list.children.length; //getting all option items
+            let correcAns = questions[que_count].answer; //getting correct answer from array
+            for(i=0; i < allOptions; i++){
+                if(option_list.children[i].textContent == correcAns){ //if there is an option which is matched to an array answer
+                    option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
+                    option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
+                    console.log("Time Off: Auto selected correct answer.");
+                }
+            }
+            for(i=0; i < allOptions; i++){
+                option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
+            }
+            next_btn.classList.add("show"); //show the next button if user selected any option
+        }
+    }
+}
+
+function startTimerLine(time){
+    counterLine = setInterval(timer, 29);
+    function timer(){
+        time += 1; //upgrading time value with 1
+        time_line.style.width = time + "px"; //increasing width of time_line with px by time value
+        if(time > 549){ //if time value is greater than 549
+            clearInterval(counterLine); //clear counterLine
+        }
+    }
+}
+
+function queCounter(index){
+   
+    let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
+    bottom_ques_counter.innerHTML = totalQueCounTag;  
+}
+
+    </script>
+<marquee direction="" ><h1 class="n"> CCC Quiz Application Devloped by @ Ram Kumar Kashyap</h1></marquee>
+</body>
+</html>
+
